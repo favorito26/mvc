@@ -1,0 +1,15 @@
+{
+    "name": "a44/mvc",
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "authors": [
+        {
+            "name": "itncoffice",
+            "email": "mufaddal2003@gmail.com"
+        }
+    ],
+    "require": {}
+}

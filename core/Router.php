@@ -2,6 +2,7 @@
 
 namespace app\core;
 
+use Exception;
 
 // @package app\core
 class Router
@@ -69,9 +70,22 @@ class Router
     {
         foreach($params as $key => $value){
             $$key = $value;
-        } 
+        }
+
+        $viewFile = Application::$ROOT_DIR . "/views/{$view}.php";
+        $indexFile = Application::$ROOT_DIR . "/views/{$view}/index.php";
+
         ob_start();
-        include_once Application::$ROOT_DIR . "/views/$view.php";
+
+        if(is_file($viewFile)){
+            include $viewFile;
+        }
+        elseif(is_file($indexFile)){
+            include $indexFile;
+        }
+        else{
+            throw new \Exception("View {$view} not found");
+        }
         return ob_get_clean();
     }
 }
